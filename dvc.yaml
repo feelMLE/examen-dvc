@@ -1,19 +1,16 @@
 stages:
   split:
-    cmd: python src/data/data_split.py
+    cmd: ' '
     deps:
     - data/raw
     - src/data/data_split.py
-    outs:
-    - data/processed/X_test.csv
-    - data/processed/X_train.csv
-    - data/processed/y_test.csv
-    - data/processed/y_train.csv
   normalize:
     cmd: python src/data/normalize.py
     deps:
     - data/processed/X_test.csv
     - data/processed/X_train.csv
+    - data/processed/y_test.csv
+    - data/processed/y_train.csv
     - src/data/normalize.py
     outs:
     - data/processed/X_test_scaled.csv
@@ -31,7 +28,6 @@ stages:
     deps:
     - data/processed/X_train_scaled.csv
     - data/processed/y_train.csv
-    - models/best_params.pkl
     - src/models/training.py
     outs:
     - models/rf_lr_model.pkl
@@ -43,7 +39,7 @@ stages:
     - models/rf_lr_model.pkl
     - src/models/evaluate.py
     outs:
-    - data/y_prediction.csv
+    - data/prediction.csv
     metrics:
     - metrics/scores.json:
         cache: false

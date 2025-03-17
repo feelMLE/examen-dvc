@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   split:
-    cmd: python src/data/data_split.py
+    cmd: ' '
     deps:
     - path: data/raw
       hash: md5
@@ -12,7 +12,9 @@ stages:
       hash: md5
       md5: e8119fd4e5b89baaffb91f6a0941be0a
       size: 3012
-    outs:
+  normalize:
+    cmd: python src/data/normalize.py
+    deps:
     - path: data/processed/X_test.csv
       hash: md5
       md5: d3be1be617366bc81a9254f075039b51
@@ -29,17 +31,6 @@ stages:
       hash: md5
       md5: 4f1097f0b9053f0a94904c047541877f
       size: 22710
-  normalize:
-    cmd: python src/data/normalize.py
-    deps:
-    - path: data/processed/X_test.csv
-      hash: md5
-      md5: d3be1be617366bc81a9254f075039b51
-      size: 78770
-    - path: data/processed/X_train.csv
-      hash: md5
-      md5: 38e9f56c92d20ee33257e3918c901e7e
-      size: 183322
     - path: src/data/normalize.py
       hash: md5
       md5: 926e8c1e2a81719b32444107cc6969a3
@@ -84,10 +75,6 @@ stages:
       hash: md5
       md5: 4f1097f0b9053f0a94904c047541877f
       size: 22710
-    - path: models/best_params.pkl
-      hash: md5
-      md5: 7f7b11999c8a70f39f5ca7ffe29fa4b7
-      size: 90
     - path: src/models/training.py
       hash: md5
       md5: 0e260b7d04ce9e4a3571f85ef5985a13
@@ -114,10 +101,10 @@ stages:
       size: 1829519
     - path: src/models/evaluate.py
       hash: md5
-      md5: b5a05e79f73a645e852653a9896feb1f
-      size: 1923
+      md5: 4147e1cef2dd3b4882f0d7e1c4706d39
+      size: 1921
     outs:
-    - path: data/y_prediction.csv
+    - path: data/prediction.csv
       hash: md5
       md5: 8b5eb66a89d6c2791f424b1e3ee4f7f2
       size: 10166
