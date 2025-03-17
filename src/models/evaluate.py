@@ -27,7 +27,7 @@ def main():
     metrics = evaluate(y_test, y_prediction)
 
     # Sauvegarder les prédictions
-    save_predictions(y_prediction, output_filepath="data/y_prediction.csv")
+    save_predictions(y_prediction, output_filepath="data/prediction.csv")
 
     # Sauvegarder les métriques
     save_metrics(metrics, output_filepath="metrics/scores.json")
